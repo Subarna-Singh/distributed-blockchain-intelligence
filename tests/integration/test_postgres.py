@@ -2,16 +2,12 @@ import psycopg
 import os
 from dotenv import load_dotenv
 
+from blockchain_intelligence.db.connection import get_connection
+
 load_dotenv()
 
 def test_postgres_connection():
-    conn = psycopg.connect(
-    host=os.environ["POSTGRES_HOST"],
-    port=os.environ["POSTGRES_PORT"],
-    dbname=os.environ["POSTGRES_DB"],
-    user=os.environ["POSTGRES_USER"],
-    password=os.environ["POSTGRES_PASSWORD"],
-)
+    conn = get_connection()
 
     with conn.cursor() as cur:
         cur.execute("SELECT 1")
