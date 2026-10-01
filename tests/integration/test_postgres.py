@@ -1,7 +1,8 @@
 import psycopg 
 import os
+from dotenv import load_dotenv
 
-os.environ['POSTGRES_HOST']
+load_dotenv()
 
 def test_postgres_connection():
     conn = psycopg.connect(
