@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . . 
 
-RUN pip install -e .
+RUN pip install .
 
 CMD ["python", "-m", "blockchain_intelligence.main"]

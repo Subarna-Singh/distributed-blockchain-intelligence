@@ -1,10 +1,7 @@
 import psycopg 
 import os
 
-
-
 def get_connection():
-
     return  psycopg.connect(
     host=os.environ["POSTGRES_HOST"],
     port=os.environ["POSTGRES_PORT"],
