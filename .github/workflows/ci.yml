@@ -8,6 +8,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: mydatabase
+        ports:
+          - 5432:5432
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,4 +33,10 @@ jobs:
           python -m pip install -e ".[dev]"
       
       - name: Run tests
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_DB: mydatabase
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
         run: pytest -v
